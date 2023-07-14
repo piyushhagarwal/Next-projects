@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Head from "next/head";
-import Blog from "./blog";
+import Test from "./test";
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         />
       </div>
 
-      <Blog />
+      <Test />
     </>
   );
 }

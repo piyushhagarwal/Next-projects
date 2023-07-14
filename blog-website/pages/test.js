@@ -1,26 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import axios from "axios";
-import { useState, useEffect } from "react";
 
-function Blog() {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        "https://pfi-soc-backend.onrender.com/api/v1/blogs"
-      );
-      setBlogs(response.data.blogs);
-      console.log(response.data.blogs);
-    } catch (error) {
-      console.error("Error fetching records:", error);
-    }
-  };
+export default function Test(props) {
+  let blogs = props.data.blogs;
   return (
     <div>
       <h1 className="text-4xl text-center mt-8 mb-12">Blogs</h1>
@@ -40,5 +22,10 @@ function Blog() {
     </div>
   );
 }
+export async function getServerSideProps(context) {
+  const res = await fetch("https://pfi-soc-backend.onrender.com/api/v1/blogs");
+  const data = await res.json();
 
-export default Blog;
+  // Pass data to the page via props
+  return { props: { data } };
+}
