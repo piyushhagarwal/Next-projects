@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Test(props) {
+export default function Blog(props) {
   let blogs = props.data.blogs;
   return (
     <div>

@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Head from "next/head";
-import Test from "./test";
+import Blog from "./blog";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <>
       <Head>
@@ -18,7 +18,14 @@ export default function Home() {
         />
       </div>
 
-      <Test />
+      <Blog data={props.data} />
     </>
   );
+}
+export async function getServerSideProps(context) {
+  const res = await fetch("https://pfi-soc-backend.onrender.com/api/v1/blogs");
+  const data = await res.json();
+
+  // Pass data to the page via props
+  return { props: { data } };
 }
